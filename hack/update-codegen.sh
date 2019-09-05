@@ -12,6 +12,10 @@ CODEGEN_PKG=$(echo `go env GOPATH`"/pkg/mod/k8s.io/code-generator@${CODEGEN_VERS
 
 echo ">> Using ${CODEGEN_PKG}"
 
+# This will throw a warning about missing Go files but we only need
+# the scripts.
+go get k8s.io/code-generator@${CODEGEN_VERSION} || true
+
 # code-generator does work with go.mod but makes assumptions about
 # the project living in `$GOPATH/src`. To work around this and support
 # any location; create a temporary directory, use this as an output
